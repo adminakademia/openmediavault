@@ -1,0 +1,13 @@
+version: "2"
+services:
+   adguardhome:
+     image: adguard/adguardhome
+     container_name: adguardhome
+     ports:
+       - 53:53/tcp #zwyklyDNS
+       - 53:53/udp #zwyklyDNS
+       - 853:853/tcp  #DNSoverTLS
+       - 3000:3000/tcp #adminpanel
+     volumes:
+       - {twoja_sciezka_do_katalogu_wspoldzielonego_docker_dane}/adguardhome/work:/opt/adguardhome/work
+       - {twoja_sciezka_do_katalogu_wspoldzielonego_docker_dane}/adguardhome/conf:/opt/adguardhome/conf
