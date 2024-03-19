@@ -1,13 +1,24 @@
-version: "2"
+####
+# Najpierw należy utworzyć sieć "macvlan" przypisującą osobny adres IP dla AdGuardHome, w tym celu zalogować się z wykorzystaniem SSH i wykonać polecenie:
+# sudo docker network create -d macvlan -o parent=end0 --subnet=192.168.100.0/23 --gateway=192.168.100.254 --ip-range=192.168.101.195/32 ag_network
+####
+
+version: "3"
 services:
    adguardhome:
-     image: adguard/adguardhome
+     image: adguard/adguardhome:latest
      container_name: adguardhome
+     networks:
+       - ag_network
      ports:
-       - 53:53/tcp #zwyklyDNS
        - 53:53/udp #zwyklyDNS
        - 853:853/tcp  #DNSoverTLS
        - 3000:3000/tcp #adminpanel
      volumes:
        - {twoja_sciezka_do_katalogu_wspoldzielonego_docker_dane}/adguardhome/work:/opt/adguardhome/work
-       - {twoja_sciezka_do_katalogu_wspoldzielonego_docker_dane}/adguardhome/conf:/opt/adguardhome/conf
+       - {twoja_sciezka_do_katalogu_wspoldzielonego_docker_dane}adguardhome/conf:/opt/adguardhome/conf
+
+networks:
+  ag_network:       
+    external: true
+
