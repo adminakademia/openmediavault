@@ -11,6 +11,7 @@ services:
      networks:
        - ag_network
      ports:
+       - 53:53/tcp #zwyklyDNS
        - 53:53/udp #zwyklyDNS
        - 853:853/tcp  #DNSoverTLS
        - 3000:3000/tcp #adminpanel
