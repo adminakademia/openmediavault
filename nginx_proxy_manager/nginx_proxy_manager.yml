@@ -1,13 +1,13 @@
-version: '3'
+version: "3"
 services:
   app: 
-    image: 'jc21/nginx-proxy-manager:latest'
+    image: jc21/nginx-proxy-manager:latest
     container_name: nginx-proxy-manager
     restart: always
     ports:
-      - '80:80' #Polaczenia_przychodzace_HTTP
-      - '443:443' #Polaczenia_przychodzace_HTTPS
-      - '81:81' #Panel_sterowania
+      - 80:80 #Polaczenia_przychodzace_HTTP
+      - 443:443 #Polaczenia_przychodzace_HTTPS
+      - 81:81 #Panel_sterowania
     volumes:
-      - '{twoja_sciezka_do_katalogu_wspoldzielonego_docker_dane}/npm/data:/data'
-      - '{twoja_sciezka_do_katalogu_wspoldzielonego_docker_dane}/npm/letsencrypt:/etc/letsencrypt'
+      - {twoja_sciezka_do_katalogu_wspoldzielonego_docker_dane}/npm/data:/data
+      - {twoja_sciezka_do_katalogu_wspoldzielonego_docker_dane}/npm/letsencrypt:/etc/letsencrypt
