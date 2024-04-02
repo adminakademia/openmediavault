@@ -8,6 +8,7 @@ services:
    adguardhome:
      image: adguard/adguardhome:latest
      container_name: adguardhome
+     restart: always
      networks:
        - ag_network
      ports:
