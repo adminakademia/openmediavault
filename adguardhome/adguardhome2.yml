@@ -1,0 +1,20 @@
+####
+# Tutaj wersja bez utworzonej sieci macvlan. Przy czym najpierw należy utworzyć sieć "macvlan". Wymaga najpierw wyłączenia demona "systemd-resolved", aby zwolnić port 53/udp:
+# $ sudo systemctl stop systemd-resolved
+# $ sudo systemctl disable systemd-resolved.service
+# $ sudo reboot
+####
+
+version: "3"
+services:
+   adguardhome:
+     image: adguard/adguardhome:latest
+     container_name: adguardhome
+     ports:
+       - 53:53/tcp #zwyklyDNS
+       - 53:53/udp #zwyklyDNS
+       - 853:853/tcp  #DNSoverTLS
+       - 3000:3000/tcp #adminpanel
+     volumes:
+       - {twoja_sciezka_do_katalogu_wspoldzielonego_docker_dane}/adguardhome/work:/opt/adguardhome/work
+       - {twoja_sciezka_do_katalogu_wspoldzielonego_docker_dane}adguardhome/conf:/opt/adguardhome/conf
