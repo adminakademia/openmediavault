@@ -1,0 +1,15 @@
+services:
+  duplicati:
+    image: lscr.io/linuxserver/duplicati:latest
+    container_name: duplicati
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=Europe/Warsaw
+    volumes:
+      - /srv/dev-disk-by-uuid-b032144c-1b53-4062-9736-a42af80f5aa8/docker_dane/duplicati/config:/config
+      - /srv/dev-disk-by-uuid-b032144c-1b53-4062-9736-a42af80f5aa8/docker_dane/duplicati/backups:/backups
+      - /srv/dev-disk-by-uuid-b032144c-1b53-4062-9736-a42af80f5aa8/docker_dane:/source
+    ports:
+      - 8200:8200
+    restart: always
