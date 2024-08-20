@@ -1,0 +1,10 @@
+services:
+  urbackup-server:
+    image: uroni/urbackup-server
+    container_name: urbackup-server
+    restart: always
+    network_mode: "host"
+    volumes:
+      - '/srv/dev-disk-by-uuid-b032144c-1b53-4062-9736-a42af80f5aa8/docker_dane/urbackup/var:/var/urbackup'
+      - '/srv/dev-disk-by-uuid-b032144c-1b53-4062-9736-a42af80f5aa8/docker_dane/urbackup/backups:/backups'
+
